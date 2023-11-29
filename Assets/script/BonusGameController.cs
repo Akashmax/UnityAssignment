@@ -45,23 +45,18 @@ public class BonusGameController : MonoBehaviour
         {
             for (int j = 0; j < gridSizeY; j++)
             {
-                // Instantiate the grid cell prefab
+           
                 GameObject gridCell = Instantiate(gridPicesPtrefab, Vector3.zero, Quaternion.identity);
 
-                // Set the parent of the grid cell to the gridParent
+              
                 gridCell.transform.SetParent(gridParent.transform, false); // Make sure to set worldPositionStays to false
-
-                // Customize the appearance based on player
                 Image imageComponent = gridCell.GetComponent<Image>();
                 if (imageComponent != null)
                 {
                     imageComponent.color = playerColor;
                 }
                
-                gridCell.transform.GetChild(0).name = "2";
-                /*  // Add a TextMeshProUGUI component to display the score
-                  TextMeshProUGUI scoreText = gridCell.AddComponent<TextMeshProUGUI>();
-                  scoreText.text = "2"; // Default score*/
+             
                 float randomValue = Random.value;
 
                 if (randomValue <= 0.35f)
@@ -72,19 +67,19 @@ public class BonusGameController : MonoBehaviour
                 }
                 else if (randomValue <= 0.60f)
                 {
-                    // STEAL with 25% chance
+                 
                     gridCell.name = "STEAL";
                     gridCell.transform.GetChild(0).name = "1"; // Assuming 1 represents STEAL
                 }
                 else if (randomValue <= 0.90f)
                 {
-                    // BOOST with 30% chance
+                
                     gridCell.name = "BOOST";
                     gridCell.transform.GetChild(0).name = "2"; // Assuming 2 represents BOOST
                 }
                 else
                 {
-                    // SHIELD with 10% chance
+                  
                     gridCell.name = "SHIELD";
                     gridCell.transform.GetChild(0).name = "3"; // Assuming 3 represents SHIELD
                 }
